@@ -24,6 +24,17 @@ export class DocumentosFirmadosController {
     return this.documentosFirmadosService.findAll(page, limit, search, startDate, endDate);
   }
 
+  @Get('existe')
+  existe(
+    @Query('rutPersonaFk') rutPersonaFk: string,
+    @Query('idTemplateDocumentoFk') idTemplateDocumentoFk: string
+  ) {
+    return this.documentosFirmadosService.existe(
+      +rutPersonaFk,
+      +idTemplateDocumentoFk
+    );
+  }
+
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.documentosFirmadosService.findOne(+id);

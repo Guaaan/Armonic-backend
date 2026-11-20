@@ -74,6 +74,17 @@ export class DocumentosFirmadosService {
     };
   }
 
+  async existe(rutPersonaFk: number, idTemplateDocumentoFk: number): Promise<{ existe: boolean }> {
+    const total = await this.documentosFirmadosRepository.count({
+      where: {
+        rutPersonaFk,
+        idTemplateDocumentoFk,
+      },
+    });
+
+    return { existe: total > 0 };
+  }
+
   findOne(id: number) {
     return this.documentosFirmadosRepository.findOne({
       where: {
